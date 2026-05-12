@@ -285,12 +285,13 @@ fabricated. They must be captured from the real Uptime Kuma dashboard after
 
 ## Exceptions Carried Forward
 
-| Exception                       | DOD Criterion | Resolution Project |
-| ------------------------------- | ------------- | ------------------ |
-| No Caddy routing                | 1.6           | Project 4          |
-| HTTP only                       | security.md   | Project 4          |
-| Container user not yet verified | security.md   | Step 6             |
-| MFA not yet verified            | security.md   | Step 6             |
+| Exception        | DOD Criterion | Resolution Project |
+| ---------------- | ------------- | ------------------ |
+| No Caddy routing | 1.6           | Project 4          |
+| HTTP only        | security.md   | Project 4          |
+
+All Step 6 items resolved: container user verified (root, accepted),
+MFA enabled and confirmed, healthcheck healthy, restore-test passed.
 
 ---
 

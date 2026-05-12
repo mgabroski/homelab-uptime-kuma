@@ -1,12 +1,8 @@
 # Screenshots
 
-Store real Uptime Kuma screenshots here after the service is running.
-Do not commit generated placeholders.
+Real screenshots captured from the running deployment on 2026-05-12.
 
-Required final closeout files:
-
-- `screenshot-uptime-kuma-dashboard-01.png` — dashboard showing the Portainer monitor healthy
-- `screenshot-uptime-kuma-monitor-detail-02.png` — monitor detail page with response history
-
-These screenshots are intentionally not fabricated in the initial ZIP.
-They must be captured from the real local deployment during the portfolio pass.
+| File | Contents |
+| ---- | -------- |
+| `screenshot-uptime-kuma-dashboard-01.png` | Dashboard — Quick Stats, Portainer UP, incident history showing down/up cycle |
+| `screenshot-uptime-kuma-monitor-detail-02.png` | Monitor detail — response time graph, 88.49% uptime, incident log with EHOSTUNREACH proof |

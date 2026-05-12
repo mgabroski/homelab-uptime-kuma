@@ -195,9 +195,9 @@ carries forward exactly.
 **The demo itself (under 5 minutes):**
 
 1. Show the dashboard — Portainer listed as UP with response time graph
-1. Open a second terminal and run `make down` in the homelab-portainer directory
+1. In a second terminal: `cd ../homelab-portainer && make down`
 1. Switch back to Uptime Kuma — watch the monitor detect failure and go red in real time
-1. Run `make up` in homelab-portainer — watch Uptime Kuma detect recovery
+1. In the second terminal: `make up` — watch Uptime Kuma detect recovery
 1. Show the incident history on the Portainer monitor detail page
 1. Run `make backup` — show the backup file created in `backups/`
 1. Run `make restore-test` — show the restore verification and boot-test output

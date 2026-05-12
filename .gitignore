@@ -16,6 +16,14 @@ node_modules/
 
 # macOS
 .DS_Store
+**/.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
 
 # Editor artifacts
 *.swp
