@@ -1,0 +1,21 @@
+# Secrets — never committed
+.env
+
+# Backups — local only, too large and potentially sensitive
+backups/
+
+# Yarn
+node_modules/
+.yarn/cache/
+.yarn/install-state.gz
+.pnp.*
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Editor artifacts
+*.swp
+*.bak

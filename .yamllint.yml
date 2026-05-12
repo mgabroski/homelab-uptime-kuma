@@ -1,0 +1,13 @@
+---
+extends: default
+
+ignore: |
+  node_modules/
+  .yarn/
+  backups/
+
+rules:
+  document-start: disable
+  line-length: disable
+  truthy:
+    allowed-values: ['true', 'false', 'on', 'off']

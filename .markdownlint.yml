@@ -1,0 +1,5 @@
+default: true
+# Line length is not enforced in this project.
+MD013: false
+# Inline HTML is allowed for README formatting.
+MD033: false

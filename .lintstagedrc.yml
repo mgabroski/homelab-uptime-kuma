@@ -1,0 +1,6 @@
+'*.{json,yml,yaml,md}':
+  - 'prettier --write'
+'*.{yml,yaml}':
+  - 'yamllint'
+'*.md':
+  - 'markdownlint'

@@ -1,0 +1,39 @@
+name: homelab-uptime-kuma
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1.23.13
+    container_name: homelab-uptime-kuma
+    restart: unless-stopped
+    # Internal HTTP check avoids requiring curl or wget inside the image.
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          node -e "require('http').get('http://127.0.0.1:3001', (res) => process.exit(res.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    # Bound to localhost only — no LAN exposure until Caddy in Project 4.
+    ports:
+      - '127.0.0.1:3001:3001'
+    # Prevent privilege escalation inside the container.
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - homelab-uptime-kuma-data:/app/data
+    networks:
+      - homelab-internal
+
+# Declared external per HQ-001 — created manually before compose up.
+# docker volume create homelab-uptime-kuma-data
+volumes:
+  homelab-uptime-kuma-data:
+    external: true
+
+# Shared with homelab-portainer — enables internal hostname resolution.
+# docker network create homelab-internal
+networks:
+  homelab-internal:
+    external: true
