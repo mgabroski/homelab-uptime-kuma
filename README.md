@@ -169,11 +169,11 @@ carries forward exactly.
 
 ## Portfolio Assets
 
-The repo includes a generated architecture diagram at
-`docs/assets/architecture-diagram.png`. Real screenshots must be captured
-from the running service during the portfolio pass and stored under
-`docs/assets/screenshots/` using the names documented in that folder.
-Screenshots are not fabricated in this initial commit.
+| Asset | Description |
+| ----- | ----------- |
+| [docs/assets/architecture-diagram.png](docs/assets/architecture-diagram.png) | Component and connection diagram |
+| [docs/assets/screenshots/screenshot-uptime-kuma-dashboard-01.png](docs/assets/screenshots/screenshot-uptime-kuma-dashboard-01.png) | Dashboard — Portainer monitor UP, Quick Stats, incident history |
+| [docs/assets/screenshots/screenshot-uptime-kuma-monitor-detail-02.png](docs/assets/screenshots/screenshot-uptime-kuma-monitor-detail-02.png) | Monitor detail — response time graph, uptime stats, down/up incident proof |
 
 ---
 
