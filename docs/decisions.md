@@ -112,24 +112,14 @@ consistent with NAMING-CONVENTIONS.md Section 6.
 ## Decision 007 — MFA required at first login
 
 **Date:** 2026-05-12
-**Status:** Required operator action — not considered complete until verified in Step 6
+**Status:** ✅ Verified — 2026-05-12
 
-Uptime Kuma supports TOTP-based MFA. It must be enabled immediately
-after creating the admin account on first login. Navigate to Settings →
-Security → Two Factor Authentication.
+Uptime Kuma supports TOTP-based MFA. Enabled immediately after creating
+the admin account on first login via Settings → Security → Two Factor
+Authentication.
 
-This is a required action, not an automated configuration. The security
-doc marks it as pending verification until Step 6 confirms it has been
-enabled and tested with logout and re-login. Recovery codes must be stored
-outside the repository.
-
-**Update this decision after Step 6 to record:**
-
-```md
-**Status:** Verified — [date]
-MFA was enabled for the admin account and verified by logout/re-login.
+Verified by logout and re-login — TOTP code is required to access the UI.
 Recovery codes stored outside the repository.
-```
 
 ---
 
@@ -199,25 +189,22 @@ failure that leaves the monitoring service down is not.
 
 ---
 
-## Decision 012 — Container user verification deferred to Step 6
+## Decision 012 — Container user verification
 
 **Date:** 2026-05-12
-**Status:** Pending Step 6 hardening
+**Status:** ✅ Verified — 2026-05-12
 
-The compose file does not force a specific container user via `user:`
-directive. Whether Uptime Kuma runs as root or non-root internally
-depends on the upstream image configuration. This must be verified
-during Step 6 with `docker exec homelab-uptime-kuma id`.
+Result: `uid=0(root) gid=0(root) groups=0(root)`
 
-No claim about container user is made before this is proven.
+The Uptime Kuma image runs as root internally. This is upstream behaviour
+— the official image does not declare a non-root user and the compose file
+does not override it.
 
-**Update this decision after Step 6 to record:**
-
-```md
-**Status:** Verified — [date]
-Result: [actual output of docker exec homelab-uptime-kuma id]
-Risk acceptance: [short explanation if root, or confirmation if non-root]
-```
+Risk acceptance: accepted for this homelab stage. The container has no
+Docker socket mount, no host filesystem access beyond its named volume,
+and privilege escalation is blocked via `no-new-privileges:true`. The
+blast radius of a compromise is limited to the data volume. This will be
+re-evaluated if Uptime Kuma is exposed to the LAN in Project 4.
 
 ---
 
@@ -248,15 +235,14 @@ The healthcheck does not replace the full hardening pass. It gives Docker a
 clear runtime signal, while `make verify-runtime` confirms container health,
 localhost-only binding, HTTP response, and absence of Docker socket mounts.
 
-**Step 6 verification required:**
+**Step 6 verification result:**
 
-```bash
-docker inspect homelab-uptime-kuma --format '{{.State.Health.Status}}'
-make verify-runtime
+```
+Health status: healthy
+Runtime verification PASSED
 ```
 
-Expected result: health status becomes `healthy`, and `make verify-runtime`
-prints `Runtime verification PASSED`.
+Verified 2026-05-12 via `make verify-runtime`.
 
 ---
 
