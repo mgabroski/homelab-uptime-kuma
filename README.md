@@ -76,7 +76,6 @@ make clean         # stop container and remove container resources
 make validate      # auto-format, then run all linters
 make validate-check # check formatting and linting without modifying files
 
-# yarn.lock is intentionally not committed for this config-only repo.
 make help          # show all commands
 ```
 

@@ -536,4 +536,4 @@ in `docs/decisions.md` before changing the healthcheck.
 
 ## Local Tooling Artifacts
 
-`yarn install` may generate `yarn.lock` locally. This repository treats it as a local tooling artifact for this config-only homelab project, so it is ignored and not included in release ZIP packages.
+`yarn install` generates or updates `yarn.lock`. Commit `yarn.lock` so every machine uses the same tooling dependency graph. Do not edit `yarn.lock` manually; it is excluded from Prettier formatting because Yarn owns its format.

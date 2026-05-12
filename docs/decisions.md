@@ -329,21 +329,19 @@ formatting drift while keeping the commit workflow fast and predictable.
 
 ---
 
-## Decision 019 — Yarn lockfile treated as a local tooling artifact
+## Decision 019 — yarn.lock committed for reproducible tooling installs
 
 **Date:** 2026-05-12
-**Status:** Accepted
+**Status:** Confirmed
 
-`yarn install` generates `yarn.lock` locally, but this repository does not commit it.
-The project is a Docker Compose and documentation repository, not an application package.
-The direct tool versions are pinned explicitly in `package.json`, and the lockfile is treated
-as local machine state rather than project source.
+yarn.lock is committed to the repository. This ensures that any machine
+running yarn install gets the exact same dependency graph, not just the
+same major versions. For a tooling-only setup like this, the lockfile is
+low-noise and high-value — it prevents subtle differences in commitlint,
+Prettier, or markdownlint behavior across machines or over time.
 
-**Impact:**
-
-- `yarn.lock` is excluded from release ZIP packages.
-- `yarn.lock` is listed in `.gitignore`.
-- Developers can regenerate it with `yarn install` when preparing local tooling.
+yarn.lock is excluded from Prettier formatting via .prettierignore because
+its format is managed entirely by Yarn and must not be modified manually.
 
 ---
 
@@ -352,8 +350,9 @@ as local machine state rather than project source.
 **Date:** 2026-05-12
 **Status:** Confirmed
 
-Prettier, markdownlint, and yamllint ignore generated dependency folders and local
-artifacts such as `node_modules/`, `.yarn/`, `backups/`, and `yarn.lock`.
+Prettier, markdownlint, and yamllint ignore generated dependency folders and machine-local
+artifacts such as `node_modules/`, `.yarn/`, and `backups/`. Prettier also
+ignores `yarn.lock` because that file is generated and maintained by Yarn.
 Validation should check committed project files, not third-party package metadata
 or generated local installation output.
 
