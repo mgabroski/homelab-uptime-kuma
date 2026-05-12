@@ -53,7 +53,9 @@ After completing first-login setup, create the Portainer health monitor:
 1. Friendly Name: `Portainer`
 1. URL: `http://homelab-portainer:9000`
 1. Heartbeat Interval: `60` seconds
+1. Retries: `3` — avoids false alerts on a single blip
 1. Accepted Status Codes: `200-299`
+1. Description: `Portainer CE — Docker management UI`
 1. Save
 
 The monitor should show green within 60 seconds. If it shows red, see
